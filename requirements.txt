@@ -13,3 +13,10 @@ starlette==0.13.6
 typing-extensions==3.7.4.3
 uvicorn==0.12.2
 requests==2.22.0
+ninja
+torch
+torchvision
+opencv-python
+numpy
+scikit-image
+pillow
