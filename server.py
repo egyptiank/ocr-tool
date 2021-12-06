@@ -27,13 +27,11 @@ def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
 
 
 async def colorize(path):
+    with open(path, "rb") as image_file:
+        data = base64.b64encode(image_file.read())
+    
     r = requests.post(
-        "https://api.deepai.org/api/colorizer",
-        files={
-            'image': open(path, 'rb'),
-        },
-        headers={'api-key': '3a1506b8-06bd-44a2-9bdf-305964d21330'}
-    )
-
+    url='https://hf.space/gradioiframe/akhaliq/Real-ESRGAN/api/predict', json={"data": [data]})
+    
     res = 'https:'+str(r.json()).split(':')[-1]
     return res[:len(res)-2]
