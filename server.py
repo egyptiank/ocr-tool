@@ -3,6 +3,7 @@ from fastapi.templating import Jinja2Templates
 import shutil
 import os
 import requests
+import base64
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
