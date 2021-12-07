@@ -28,13 +28,14 @@ def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
 
 
 async def colorize(path):
+    data = ""
     with open(path, "rb") as image_file:
-        data = base64.b64encode(image_file.read())
-    data = data.decode('utf-8')
+        data = base64.encodestring(image_file.read())
     data = "data:image/"+ path.split('.')[1] + ";base64," + data
     r = requests.post(url='https://hf.space/gradioiframe/akhaliq/Real-ESRGAN/api/predict', json={"data": [data]})
     new_data = r.json().get("data")[0]
     res = new_data.replace('data:image/jpg;base64,','')
+    res = base64.decodestring(new_data)
     #with open("imageToSave.png", "wb") as fh:
     #    fh.write(base64.decodebytes(res))
     return res
