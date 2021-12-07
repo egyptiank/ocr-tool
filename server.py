@@ -35,6 +35,6 @@ async def colorize(path):
     r = requests.post(url='https://hf.space/gradioiframe/akhaliq/Real-ESRGAN/api/predict', json={"data": [data]})
     new_data = r.json().get("data")[0]
     res = new_data.replace('data:image/jpg;base64,','')
-    with open("imageToSave.png", "wb") as fh:
-        fh.write(base64.decodebytes(res))
+    #with open("imageToSave.png", "wb") as fh:
+    #    fh.write(base64.decodebytes(res))
     return res
